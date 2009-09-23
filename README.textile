@@ -5,9 +5,12 @@ Extension for Radiant CMS which enables you to display random quotes on a page
 * Created by:  Victor Luft, Andrew vonderLuft
 * Contact: avonderluft [at] avlux [dot] net
 
+* Revised by: Paladin, Arlen Walker -- wire [at] paladinweb [dot] net
+
 h3. Revision History
 
-* 1.0 - 7/2009 - Radiant 0.7 compatible, should also work with 0.8
+* 1.0 - 7/2009 - Radiant 0.7 compatible, should also work with 0.8 (Before Fork)
+* 1.1 - 9/2009 - Works on Radiant 0.81, should work with every version 1.0 works with. Only changes in this version are moving the randomization into the model, and making it slightly more efficient.
 
 h3. Requirements
 
@@ -23,6 +26,8 @@ From your RADIANT_ROOT:
 
 h3. To Do
 
+Purpose of this version is to slightly improve the efficiency of dealing with the quote table. I did it as preparation for expanding the quote table, including categories for the quotations and the ability to randomize not only within an author's quotes, but eventually within quotes pertaining to a specific category as well.
+
 * Send your Suggestions
 
 h3. Notes
@@ -30,3 +35,5 @@ h3. Notes
 h3. Acknowledgments
 
 Victor originally wrote this as a private extension for http://avanim.org.  Andrew decided to extract it, enhance it, and make it available to the community.
+
+Arlen thanks Victor and Andrew for doing the heavy lifting on this in the first place.
