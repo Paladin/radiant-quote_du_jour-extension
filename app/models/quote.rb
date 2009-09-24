@@ -10,4 +10,9 @@ class Quote < ActiveRecord::Base
   	end
   	find(ids[rand(ids.length)]["id"].to_i) unless ids.blank?
   end
+  
+  def self.list( author )
+  	conditions = author.blank? ? [] : [ 'author = ?', author ]
+  	find( :all, :conditions => conditions )
+  end
 end

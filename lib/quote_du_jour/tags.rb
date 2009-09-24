@@ -11,11 +11,7 @@ module QuoteDuJour::Tags
   }
   tag "quote" do |tag|
     quote = Quote.random(tag.attr['author'])
-    result = '<blockquote>' + quote.quote
-    result << "<br /><br /><cite>&nbsp;&mdash;&nbsp;" + quote.author
-    result << " in " + quote.work unless quote.work == ""
-    result << '</cite></blockquote>'
-    result
+    result = QuoteDuJour.formatted( quote )
   end
   
   desc %{
@@ -27,20 +23,24 @@ module QuoteDuJour::Tags
     <pre><code><r:quotes [author="author_name"] /></code></pre>
   }
   tag "quotes" do |tag|
-    if tag.attr['author']
-      quotes = Quote.find_all_by_author(tag.attr['author'])
-      result = "<h2>Quotes by #{tag.attr['author']}</h2>"
-    else
-      quotes = Quote.find(:all, :order => "author asc")
-      result = "<h2>All Quotes</h2>"
-    end
+    quotes = Quote.list( tag.attr['author'] )
+    result = QuoyeDuJour.header( tag.attr['author'] )
     quotes.each do |quote|
-      result << '<blockquote>' + quote.quote
-      result << "<br /><br /><cite>&nbsp;&mdash;&nbsp;" + quote.author
-      result << " in " + quote.work unless quote.work == ""
-      result << '</cite></blockquote>'
+      result += QuoteDuJour.formatted( quote )
     end
     result
+  end
+  
+  def QuoteDuJour.header( author )
+  	author.blank? ? "<h2>All Quotes</h2>" : "<h2>Quotes by #{author}</h2>"
+  end
+  
+  def QuoteDuJour.formatted( quote )
+    result =''
+    result << '<blockquote>' + quote.quote
+    result << "<br /><br /><cite>&nbsp;&mdash;&nbsp;" + quote.author
+    result << " in " + quote.work unless quote.work == ""
+    result << '</cite></blockquote>'  
   end
   
 end
