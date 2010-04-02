@@ -6,7 +6,7 @@ describe Quote do
 
   before(:each) do
     @first_quote = Quote.find(:first)
-    @last_quote = Quote.find(:first)
+    @last_quote = Quote.find(:last)
     @random_quote = Quote.random( '' )
     @random_author_quote = Quote.random( author )
     @all_quotes = Quote.find(:all)
